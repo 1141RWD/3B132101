@@ -9,9 +9,16 @@
 <body>
 
 <header class="navbar">
-  <a href="index.html" style="color:white;">← 返回</a>
-  <div class="cart">🛒 <span id="cart-count">0</span></div>
+  <a href="index.html" class="logo">Fantasy Fan Shop</a>
+
+  <input type="text" id="searchInput" placeholder="搜尋商品">
+
+  <div class="nav-actions">
+    <button onclick="toggleTheme()">🌙</button>
+    <button onclick="toggleCart()">🛒 <span id="cart-count">0</span></button>
+  </div>
 </header>
+
 
 <main class="detail">
   <img id="product-img">

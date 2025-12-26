@@ -1,88 +1,55 @@
+/* ================= 基础重置 ================= */
 * {
+  margin: 0;
+  padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  margin: 0;
   font-family: Arial, sans-serif;
   background-color: #f4f4f4;
+  color: #333;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-/* ===== Navbar ===== */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ================= HEADER ================= */
 .navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   padding: 15px 30px;
   background-color: #1f1f1f;
   color: white;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .logo {
-  margin: 0;
-}
-
-.cart {
-  font-size: 1.2rem;
-}
-
-/* ===== Banner ===== */
-.banner {
-  text-align: center;
-  padding: 40px 20px;
-  background: linear-gradient(135deg, #444, #222);
-  color: white;
-}
-
-/* ===== Products ===== */
-.product-list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 9 宫格 */
-  gap: 25px;
-  padding: 40px;
-}
-
-/* 平板 */
-@media (max-width: 900px) {
-  .product-list {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-/* 手机 */
-@media (max-width: 600px) {
-  .product-list {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-.product-card {
-  background: white;
-  border-radius: 12px;
-  padding: 15px;
-  text-align: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.product-card img {
-  width: 100%;
-  border-radius: 10px;
-}
-
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
-}
-
-.price {
-  color: #ff6600;
+  font-size: 1.5rem;
   font-weight: bold;
 }
 
-button {
-  margin-top: 10px;
-  padding: 10px 15px;
+.navbar input[type="text"] {
+  flex: 1;
+  max-width: 250px;
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-actions button {
+  padding: 8px 12px;
   border: none;
   border-radius: 20px;
   background-color: #ff6600;
@@ -91,43 +58,132 @@ button {
   transition: background-color 0.3s;
 }
 
-button:hover {
+.nav-actions button:hover {
   background-color: #e65c00;
 }
 
-.detail {
+/* ================= MAIN ================= */
+.container {
   display: flex;
-  gap: 40px;
-  padding: 40px;
+  padding: 20px 40px;
+  gap: 30px;
 }
 
-.detail img {
-  width: 300px;
+/* ===== FILTER AREA ===== */
+.filter-area {
+  width: 220px;
+  background-color: #fff;
+  padding: 20px;
   border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  flex-shrink: 0;
 }
 
-/* ===== Footer ===== */
-footer {
+.filter-area h4 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.filter-group {
+  margin-bottom: 20px;
+}
+
+.filter-group label,
+.filter-group .tag {
+  display: block;
+  margin-bottom: 5px;
+  cursor: pointer;
+  background-color: #f4f4f4;
+  padding: 5px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s;
+}
+
+.filter-group label:hover,
+.filter-group .tag:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+.filter-group select {
+  width: 100%;
+  padding: 5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
+
+/* ===== PRODUCT GRID ===== */
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  flex: 1;
+}
+
+.product-card {
+  background-color: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  transition: transform 0.3s, box-shadow 0.3s;
+  cursor: pointer;
+}
+
+.product-card img {
+  width: 100%;
+  display: block;
+}
+
+.product-card h3 {
+  font-size: 1rem;
+  margin: 10px;
+}
+
+.product-card .price {
+  color: #ff6600;
+  font-weight: bold;
+  margin: 0 10px 10px 10px;
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+/* ================= FOOTER ================= */
+.footer {
   text-align: center;
   padding: 20px;
-  font-size: 0.9rem;
   background-color: #222;
   color: #ccc;
+  margin-top: 30px;
+  font-size: 0.9rem;
 }
 
-/* ===== RWD ===== */
+/* ================= RWD ================= */
+@media (max-width: 1000px) {
+  .container {
+    flex-direction: column;
+    padding: 20px;
+  }
+  .filter-area {
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 600px) {
   .navbar {
     flex-direction: column;
-    gap: 10px;
+    align-items: stretch;
   }
-
-  .banner h2 {
-    font-size: 1.4rem;
+  .navbar input[type="text"] {
+    max-width: 100%;
   }
-
-  .detail {
-    flex-direction: column;
-    align-items: center;
+  .product-list {
+    grid-template-columns: 1fr;
   }
 }

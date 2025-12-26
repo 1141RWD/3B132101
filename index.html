@@ -8,48 +8,91 @@
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="navbar">
-  <h1 class="logo">Fantasy Fan Shop</h1>
-  <div class="cart">
-    🛒 <span id="cart-count">0</span>
+  <!-- Logo -->
+  <a href="index.html" class="logo">Fantasy Fan Shop</a>
+
+  <!-- Search -->
+  <input
+    type="text"
+    id="searchInput"
+    placeholder="搜尋商品"
+  >
+
+  <!-- Category Select -->
+  <select id="categorySelect">
+    <option value="all">全部分類</option>
+    <option value="bag">包類</option>
+    <option value="accessory">配件</option>
+    <option value="stationery">文具</option>
+  </select>
+
+  <!-- Actions -->
+  <div class="nav-actions">
+    <button id="themeToggle">🌙</button>
+    <button id="cartBtn">
+      🛒 <span id="cart-count">0</span>
+    </button>
   </div>
 </header>
 
-<section class="banner">
-  <h2>為冒險者打造的概念周邊</h2>
-  <p>Fan-made · 非官方 · 前端設計展示</p>
-</section>
+<!-- ================= MAIN ================= -->
+<main class="container">
 
-<main class="product-list">
-  <a href="product.html?id=1" class="product-link">
-    <div class="product-card">
-      <img src="images/item1.jpg" alt="商品1">
-      <h3>冒險者帆布袋</h3>
-      <p class="price">$299</p>
-    </div>
-  </a>
+  <!-- ===== FILTER AREA ===== -->
+  <aside class="filter-area">
 
-  <a href="product.html?id=2" class="product-link">
-    <div class="product-card">
-      <img src="images/item2.jpg" alt="商品2">
-      <h3>元素符文貼紙組</h3>
-      <p class="price">$99</p>
-    </div>
-  </a>
+    <!-- Price -->
+    <section class="filter-group">
+      <h4>價格區間</h4>
+      <label><input type="radio" name="price"> 全部</label>
+      <label><input type="radio" name="price"> 0–100</label>
+      <label><input type="radio" name="price"> 101–300</label>
+    </section>
 
-  <a href="product.html?id=3" class="product-link">
-    <div class="product-card">
-      <img src="images/item3.jpg" alt="商品3">
-      <h3>旅人角色鑰匙圈</h3>
-      <p class="price">$199</p>
-  </div>
-</a>
+    <!-- Tags -->
+    <section class="filter-group">
+      <h4>分類標籤</h4>
+      <button class="tag">冒險</button>
+      <button class="tag">角色</button>
+      <button class="tag">符文</button>
+    </section>
+
+    <!-- Sort -->
+    <section class="filter-group">
+      <h4>排序方式</h4>
+      <select>
+        <option>最新上架</option>
+        <option>價格低 → 高</option>
+        <option>價格高 → 低</option>
+      </select>
+    </section>
+
+  </aside>
+
+  <!-- ===== PRODUCT GRID ===== -->
+  <section class="product-list">
+
+    <!-- 商品卡片（重复 9 次） -->
+    <a href="product.html?id=1" class="product-link">
+      <div class="product-card">
+        <img src="images/item1.jpg" alt="冒險者帆布袋">
+        <h3>冒險者帆布袋</h3>
+        <p class="price">$299</p>
+      </div>
+    </a>
+
+    <!-- 其余商品略 -->
+
+  </section>
+
 </main>
 
-<footer>
-  <p>
-    本網站為課程期末作業，僅作前端設計展示，商品圖像為 AI 生成之概念設計，無任何商業用途。
-  </p>
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>Fantasy Fan Shop 為前端設計課程期末作業展示。</p>
+  <p>非官方、非商業用途，商品圖像為 AI 生成概念設計。</p>
 </footer>
 
 <script src="js/main.js"></script>
