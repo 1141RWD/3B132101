@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>商品詳情</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" style="color:white;">← 返回</a>
+  <div class="cart">🛒 <span id="cart-count">0</span></div>
+</header>
+
+<main class="detail">
+  <img id="product-img">
+  <div class="detail-info">
+    <h2 id="product-name"></h2>
+    <p id="product-price"></p>
+    <p id="product-desc"></p>
+    <button onclick="addToCart()">加入購物車</button>
+  </div>
+</main>
+
+<script src="js/main.js"></script>
+<script>
+  loadProduct();
+</script>
+</body>
+</html>
