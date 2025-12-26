@@ -37,10 +37,25 @@ body {
 /* ===== Products ===== */
 .product-list {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(3, 1fr); /* 9 宫格 */
   gap: 25px;
   padding: 40px;
 }
+
+/* 平板 */
+@media (max-width: 900px) {
+  .product-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* 手机 */
+@media (max-width: 600px) {
+  .product-list {
+    grid-template-columns: 1fr;
+  }
+}
+
 
 .product-card {
   background: white;
