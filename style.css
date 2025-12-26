@@ -43,6 +43,13 @@ a {
   outline: none;
 }
 
+.navbar select {
+  padding: 8px 12px;
+  border-radius: 20px;
+  border: none;
+  outline: none;
+}
+
 .nav-actions {
   display: flex;
   gap: 10px;
@@ -96,7 +103,7 @@ a {
   background-color: #f4f4f4;
   padding: 5px 10px;
   border-radius: 8px;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 }
 
 .filter-group label:hover,
@@ -180,10 +187,44 @@ a {
     flex-direction: column;
     align-items: stretch;
   }
-  .navbar input[type="text"] {
+  .navbar input[type="text"],
+  .navbar select {
     max-width: 100%;
+    margin-bottom: 10px;
   }
   .product-list {
     grid-template-columns: 1fr;
   }
+}
+
+/* ================= 明暗模式 ================= */
+body.dark {
+  background-color: #121212;
+  color: #eee;
+}
+
+body.dark .navbar {
+  background-color: #1b1b1b;
+}
+
+body.dark .filter-area,
+body.dark .product-card {
+  background-color: #1f1f1f;
+  color: #eee;
+}
+
+body.dark .filter-group label,
+body.dark .filter-group .tag {
+  background-color: #2a2a2a;
+}
+
+body.dark .filter-group label:hover,
+body.dark .filter-group .tag:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+body.dark .footer {
+  background-color: #111;
+  color: #ccc;
 }
