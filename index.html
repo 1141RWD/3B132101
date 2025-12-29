@@ -13,131 +13,47 @@
   <!-- Logo -->
   <a href="index.html" class="logo">Fantasy Fan Shop</a>
 
-  <!-- Search -->
-  <input
-    type="text"
-    id="searchInput"
-    placeholder="搜尋商品"
-  >
+  <!-- 搜索栏 -->
+  <input type="text" id="searchInput" placeholder="搜尋商品">
 
-  <!-- Category Select -->
-  <select id="categorySelect">
-    <option value="all">全部分類</option>
-    <option value="bag">包類</option>
-    <option value="accessory">配件</option>
-    <option value="stationery">文具</option>
-  </select>
-
-  <!-- Actions -->
+  <!-- 明暗切換 & 購物車 -->
   <div class="nav-actions">
     <button id="themeToggle">🌙</button>
-    <button id="cartBtn">
-      🛒 <span id="cart-count">0</span>
-    </button>
+    <button id="cartBtn">🛒 <span id="cart-count">0</span></button>
   </div>
 </header>
 
 <!-- ================= MAIN ================= -->
 <main class="container">
 
-  <!-- ===== FILTER AREA ===== -->
+  <!-- ===== FILTER AREA (Sidebar) ===== -->
   <aside class="filter-area">
-
-    <!-- Price -->
-    <section class="filter-group">
-      <h4>價格區間</h4>
-      <label><input type="radio" name="price"> 全部</label>
-      <label><input type="radio" name="price"> 0–100</label>
-      <label><input type="radio" name="price"> 101–300</label>
-    </section>
-
-    <!-- Sort -->
-    <section class="filter-group">
-      <h4>排序方式</h4>
-      <select>
-        <option>最新上架</option>
-        <option>價格低 → 高</option>
-        <option>價格高 → 低</option>
-      </select>
-    </section>
-
+    <h4>分類</h4>
+    <select id="categorySelect">
+      <option value="all">全部分類</option>
+      <option value="bag">包類</option>
+      <option value="accessory">配件</option>
+      <option value="stationery">文具</option>
+    </select>
+    <br>
+<hr>
+    <h4>價格區間</h4>
+    <label><input type="radio" name="price" value="all" checked> 全部</label><br>
+    <label><input type="radio" name="price" value="0-100"> 0–100</label><br>
+    <label><input type="radio" name="price" value="101-300"> 101–300</label><br>
+    <label><input type="radio" name="price" value="301-999"> 301 以上</label><br>
+<hr>
+    <h4>排序方式</h4>
+    <select id="sortSelect">
+      <option value="default">排序</option>
+      <option value="low">價格低 → 高</option>
+      <option value="high">價格高 → 低</option>
+    </select>
   </aside>
 
   <!-- ===== PRODUCT GRID ===== -->
   <section class="product-list">
-
-    <!-- 商品卡片（重复 9 次） -->
-    <a href="product.html?id=1" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="冒險者帆布袋">
-        <h3>冒險者帆布袋</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=2" class="product-link">
-      <div class="product-card">
-        <img src="images/item2.jpg" alt="盲盒">
-        <h3>2</h3>
-        <p class="price">$99</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=3" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="吧唧">
-        <h3>3</h3>
-        <p class="price">$199</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=4" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="玩偶">
-        <h3>4</h3>
-        <p class="price">$599</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=5" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="立牌">
-        <h3>5</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=6" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="海报">
-        <h3>6</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=7" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="桌垫">
-        <h3>7</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=8" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="鼠标垫">
-        <h3>8</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
-
-    <a href="product.html?id=9" class="product-link">
-      <div class="product-card">
-        <img src="images/item1.jpg" alt="马克杯">
-        <h3>9</h3>
-        <p class="price">$299</p>
-      </div>
-    </a>
+    <!-- 商品卡片將由 main.js 動態生成 -->
   </section>
 
 </main>
