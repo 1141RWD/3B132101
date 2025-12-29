@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購物車 - Fantasy Fan Shop</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="logo">Fantasy Fan Shop</a>
+</header>
+
+<main class="cart-container">
+  <h2>我的購物車</h2>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th>商品</th>
+        <th>價格</th>
+        <th>數量</th>
+        <th>小計</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="cart-items">
+      <!-- JS 動態生成 -->
+    </tbody>
+  </table>
+
+  <div class="cart-summary">
+    <p>總計：$<span id="cart-total">0</span></p>
+    <button onclick="checkout()">結帳</button>
+  </div>
+</main>
+
+<script src="product.js"></script>
+<script>
+  const cartItemsEl = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
+  let cart = JSON.parse(localStorage.getItem("cart")) || {};
+
+  function renderCart() {
+    cartItemsEl.innerHTML = "";
+    let total = 0;
+    for (let id in cart) {
+      const product = products[id - 1]; // products 陣列 index = id-1
+      const qty = cart[id];
+      const subtotal = product.price * qty;
+      total += subtotal;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><a href="product.html?id=${id}">${product.name}</a></td>
+        <td>$${product.price}</td>
+        <td>
+          <input type="number" min="1" value="${qty}" onchange="updateQuantity(${id}, this.value)">
+        </td>
+        <td>$${subtotal}</td>
+        <td><button onclick="removeItem(${id})">刪除</button></td>
+      `;
+      cartItemsEl.appendChild(tr);
+    }
+    cartTotalEl.textContent = total;
+  }
+
+  function updateQuantity(id, value) {
+    const qty = parseInt(value);
+    if (qty <= 0) return;
+    cart[id] = qty;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function removeItem(id) {
+    delete cart[id];
+    localStorage.setItem("cart", JSON.stringify(cart));
+    renderCart();
+  }
+
+  function checkout() {
+    alert("結帳功能示意，實際未實作。");
+  }
+
+  renderCart();
+</script>
+</body>
+</html>
