@@ -1,5 +1,14 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
+    <script>
+  (function () {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    }
+  })();
+</script>
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +19,17 @@
 
 <header class="navbar">
   <a href="index.html" class="logo">Fantasy Fan Shop</a>
+
+  <input type="text" id="searchInput" placeholder="搜尋商品">
+
+  <div class="nav-actions">
+    <button id="themeToggle">🌙</button>
+    <button id="cartBtn">
+      🛒 <span id="cart-count">0</span>
+    </button>
+  </div>
 </header>
+
 
 <main class="cart-container">
   <h2>我的購物車</h2>
@@ -85,5 +104,6 @@
 
   renderCart();
 </script>
+<script src="js/main.js"></script>
 </body>
 </html>

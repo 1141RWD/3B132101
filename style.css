@@ -198,33 +198,40 @@ a {
 }
 
 /* ================= 明暗模式 ================= */
-body.dark {
+html.dark {
   background-color: #121212;
   color: #eee;
 }
 
-body.dark .navbar {
+html.dark .navbar {
   background-color: #1b1b1b;
 }
 
-body.dark .filter-area,
-body.dark .product-card {
+html.dark .filter-area,
+html.dark .product-card {
   background-color: #1f1f1f;
   color: #eee;
 }
 
-body.dark .filter-group label,
-body.dark .filter-group .tag {
+html.dark .filter-group label,
+html.dark .filter-group .tag {
   background-color: #2a2a2a;
 }
 
-body.dark .filter-group label:hover,
-body.dark .filter-group .tag:hover {
+html.dark .filter-group label:hover,
+html.dark .filter-group .tag:hover {
   background-color: #ff6600;
   color: white;
 }
 
-body.dark .footer {
+html.dark .footer {
   background-color: #111;
   color: #ccc;
 }
+
+html.dark body {
+  background-color: #121212;
+  color: #eee;
+}
+
+
