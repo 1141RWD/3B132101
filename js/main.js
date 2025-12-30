@@ -1,3 +1,6 @@
+const PRODUCTS_PER_PAGE = 9;
+let currentPage = 1;
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ========= DOM ========= */
@@ -43,58 +46,108 @@ if (themeToggle) {
     { id: 6, name: "海报", price: 299, category: "stationery" },
     { id: 7, name: "桌垫", price: 299, category: "stationery" },
     { id: 8, name: "鼠标垫", price: 299, category: "stationery" },
-    { id: 9, name: "马克杯", price: 299, category: "stationery" }
+    { id: 9, name: "马克杯", price: 299, category: "stationery" },
+    { id: 10, name: "椅子", price: 299, category: "stationery" },
   ];
 
   let cartCount = Number(localStorage.getItem("cartCount")) || 0;
   if (cartCountEl) cartCountEl.textContent = cartCount;
 
-  function updateProducts() {
-    const keyword = searchInput?.value.toLowerCase() || "";
-    const category = categorySelect?.value || "all";
-    const priceValue =
-      document.querySelector("input[name='price']:checked")?.value || "all";
-    const sortValue = sortSelect?.value || "default";
+function updateProducts() {
+  const keyword = searchInput?.value.toLowerCase() || "";
+  const category = categorySelect?.value || "all";
+  const priceValue =
+    document.querySelector("input[name='price']:checked")?.value || "all";
+  const sortValue = sortSelect?.value || "default";
 
-    let list = products.filter(p => {
-      const matchName = p.name.toLowerCase().includes(keyword);
-      const matchCategory = category === "all" || p.category === category;
+  /* ===== 过滤 ===== */
+  let filtered = products.filter(p => {
+    const matchName = p.name.toLowerCase().includes(keyword);
+    const matchCategory = category === "all" || p.category === category;
 
-      let matchPrice = true;
-      if (priceValue !== "all") {
-        const [min, max] = priceValue.split("-").map(Number);
-        matchPrice = p.price >= min && p.price <= max;
-      }
+    let matchPrice = true;
+    if (priceValue !== "all") {
+      const [min, max] = priceValue.split("-").map(Number);
+      matchPrice = p.price >= min && p.price <= max;
+    }
 
-      return matchName && matchCategory && matchPrice;
+    return matchName && matchCategory && matchPrice;
+  });
+
+  /* ===== 排序 ===== */
+  if (sortValue === "low") filtered.sort((a, b) => a.price - b.price);
+  if (sortValue === "high") filtered.sort((a, b) => b.price - a.price);
+
+  /* ===== 分页计算 ===== */
+  const totalPages = Math.ceil(filtered.length / PRODUCTS_PER_PAGE);
+  if (currentPage > totalPages) currentPage = 1;
+
+  const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const end = start + PRODUCTS_PER_PAGE;
+  const pageProducts = filtered.slice(start, end);
+
+  /* ===== 渲染商品 ===== */
+  productListContainer.innerHTML = "";
+
+  pageProducts.forEach(p => {
+    const a = document.createElement("a");
+    a.href = `product.html?id=${p.id}`;
+    a.className = "product-link";
+    a.innerHTML = `
+      <div class="product-card">
+        <img src="images/item${p.id}.jpg" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p class="price">$${p.price}</p>
+      </div>
+    `;
+    productListContainer.appendChild(a);
+  });
+
+  renderPagination(totalPages);
+}
+
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  if (!pagination) return;
+
+  pagination.innerHTML = "";
+
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = i === currentPage ? "active" : "";
+
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      updateProducts();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
-    if (sortValue === "low") list.sort((a, b) => a.price - b.price);
-    if (sortValue === "high") list.sort((a, b) => b.price - a.price);
-
-    productListContainer.innerHTML = "";
-
-    list.forEach(p => {
-      const a = document.createElement("a");
-      a.href = `product.html?id=${p.id}`;
-      a.className = "product-link";
-      a.innerHTML = `
-        <div class="product-card">
-          <img src="images/item${p.id}.jpg">
-          <h3>${p.name}</h3>
-          <p class="price">$${p.price}</p>
-        </div>
-      `;
-
-      a.querySelector(".product-card").addEventListener("dblclick", () => {
-        cartCount++;
-        cartCountEl.textContent = cartCount;
-        localStorage.setItem("cartCount", cartCount);
-      });
-
-      productListContainer.appendChild(a);
-    });
+    pagination.appendChild(btn);
   }
+}
+
+searchInput?.addEventListener("input", () => {
+  currentPage = 1;
+  updateProducts();
+});
+
+categorySelect?.addEventListener("change", () => {
+  currentPage = 1;
+  updateProducts();
+});
+
+priceRadios.forEach(radio =>
+  radio.addEventListener("change", () => {
+    currentPage = 1;
+    updateProducts();
+  })
+);
+
+sortSelect?.addEventListener("change", () => {
+  currentPage = 1;
+  updateProducts();
+});
 
   searchInput?.addEventListener("input", updateProducts);
   categorySelect?.addEventListener("change", updateProducts);
