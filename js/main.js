@@ -92,6 +92,7 @@ function updateProducts() {
   pageProducts.forEach(p => {
     const a = document.createElement("a");
     a.href = `product.html?id=${p.id}`;
+    a.target = "_blank";
     a.className = "product-link";
     a.innerHTML = `
       <div class="product-card">
