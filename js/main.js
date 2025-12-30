@@ -1,6 +1,50 @@
 const PRODUCTS_PER_PAGE = 9;
 let currentPage = 1;
 
+const promotions = [
+  { img: "images/ad1.jpg", text: "限時優惠！全館 9 折", url: "https://example.com/sale" },
+  { img: "images/ad2.jpg", text: "新品上市！冒險者周邊", url: "https://example.com/new" },
+  { img: "images/ad3.jpg", text: "會員專屬禮包", url: "https://example.com/member" }
+];
+
+function renderPromotions() {
+  const track = document.querySelector(".promotion-track");
+  if (!track) return;
+
+  track.innerHTML = "";
+  promotions.forEach(ad => {
+    const card = document.createElement("a");
+    card.href = ad.url;
+    card.className = "promotion-card";
+    card.target = "_blank"; // 点击打开新页面
+    card.innerHTML = `
+      <img src="${ad.img}" alt="${ad.text}">
+      <h3>${ad.text}</h3>
+    `;
+    track.appendChild(card);
+  });
+}
+
+// 自动轮播
+function startPromotionCarousel() {
+  const track = document.querySelector(".promotion-track");
+  if (!track) return;
+
+  let index = 0;
+  const total = track.children.length;
+
+  setInterval(() => {
+    index = (index + 1) % total;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }, 3000); // 每 3 秒切换一条广告
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  renderPromotions();
+  startPromotionCarousel();
+});
+
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ========= DOM ========= */
