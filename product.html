@@ -11,89 +11,145 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品詳情｜Fantasy Fan Shop</title>
+  <title>商品詳情 - Fantasy Fan Shop</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ================= 商品展示 ================= */
+    .product-detail {
+      max-width: 1000px;
+      margin: 40px auto;
+      display: flex;
+      gap: 40px;
+      flex-wrap: wrap;
+      padding: 0 20px;
+    }
+    .product-img-container {
+      flex: 1;
+      max-width: 400px;
+      position: relative;
+    }
+    .product-img-container img {
+      width: 100%;
+      display: block;
+      border-radius: 12px;
+    }
+    .product-info {
+      flex: 1;
+      min-width: 250px;
+    }
+    .product-info h1 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+    }
+    .product-info p.price {
+      color: #ff6600;
+      font-size: 1.4rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    .product-info p.desc {
+      margin-bottom: 20px;
+      line-height: 1.6;
+    }
+    .product-info input[type="number"] {
+      width: 60px;
+      padding: 5px;
+      margin-right: 10px;
+    }
+    .product-info button {
+      padding: 8px 15px;
+      background-color: #ff6600;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .product-tabs {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    .tab-buttons {
+      display: flex;
+      gap: 10px;
+      border-bottom: 2px solid #ddd;
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 12px 20px;
+      cursor: pointer;
+      font-size: 1rem;
+      border-bottom: 3px solid transparent;
+    }
+    .tab-btn.active {
+      border-color: #ff6600;
+      color: #ff6600;
+      font-weight: bold;
+    }
+    .tab-panel {
+      display: none;
+      padding: 20px 0;
+      line-height: 1.6;
+    }
+    .tab-panel.active {
+      display: block;
+    }
+    .tab-panel img {
+      max-width: 100%;
+      margin-bottom: 15px;
+      border-radius: 12px;
+    }
+    /* 暗色模式 */
+    html.dark .tab-buttons {
+      border-color: #444;
+    }
+    html.dark .tab-btn {
+      color: #eee;
+    }
+    html.dark .tab-btn.active {
+      color: #ff6600;
+    }
+    html.dark .tab-panel {
+      color: #eee;
+    }
+  </style>
 </head>
 <body>
+  <!-- ================= HEADER ================= -->
+  <header class="navbar">
+    <a href="index.html" class="logo">Fantasy Fan Shop</a>
+    <input type="text" id="searchInput" placeholder="搜尋商品">
+    <div class="nav-actions">
+      <button id="themeToggle">🌙</button>
+      <button id="cartBtn">🛒 <span id="cart-count">0</span></button>
+    </div>
+  </header>
 
-<!-- ================= HEADER ================= -->
-<header class="navbar">
-  <a href="index.html" class="logo">Fantasy Fan Shop</a>
-  <!-- 搜索栏 -->
-  <input type="text" id="searchInput" placeholder="搜尋商品">
-
-  <!-- 明暗切換 & 購物車 -->
-  <div class="nav-actions">
-    <button id="themeToggle">🌙</button>
-    <button id="cartBtn">🛒 <span id="cart-count">0</span></button>
-  </div>
-</header>
-
-<!-- ================= 商品詳情 ================= -->
-<main class="product-detail-container">
-
-  <!-- 商品主视图 -->
-  <div class="product-image-section">
-    <img id="product-img" src="" alt="商品圖">
-  </div>
-
-  <!-- 商品資訊 -->
-  <div class="product-info-section">
-    <h1 id="product-name">商品名稱</h1>
-    <p id="product-price" class="detail-price">$0</p>
-    <p id="product-desc" class="detail-desc"></p>
-
-    <!-- 數量 & 加入購物車 -->
-    <div class="purchase-panel">
-      購買數量：
+  <!-- ================= 商品區 ================= -->
+  <section class="product-detail">
+    <div class="product-img-container">
+      <img id="product-img" src="" alt="">
+    </div>
+    <div class="product-info">
+      <h1 id="product-name"></h1>
+      <p class="price" id="product-price"></p>
+      <p class="desc" id="product-desc"></p>
       <input type="number" id="product-qty" value="1" min="1">
       <button id="add-cart-btn">加入購物車</button>
     </div>
-  </div>
-</main>
+  </section>
 
-<!-- ================= 商品介紹區 ================= -->
-<section class="product-tabs">
-
-  <div class="tab-buttons">
-    <button class="tab-btn active" data-tab="intro">商品介紹</button>
-    <button class="tab-btn" data-tab="spec">商品規格</button>
-    <button class="tab-btn" data-tab="notice">注意事項</button>
-  </div>
-
-  <div class="tab-content">
-
-    <div class="tab-panel active" id="intro">
-      <p id="product-long-desc"></p>
+  <!-- ================= 商品介紹 Tabs ================= -->
+  <section class="product-tabs">
+    <div class="tab-buttons">
+      <button class="tab-btn active" data-tab="desc">商品介紹</button>
+      <button class="tab-btn" data-tab="spec">商品規格</button>
     </div>
+    <div class="tab-panel active" id="desc"></div>
+    <div class="tab-panel" id="spec"></div>
+  </section>
 
-    <div class="tab-panel" id="spec">
-      <ul>
-        <li>材質：帆布 / 塑料 / 金屬</li>
-        <li>尺寸：約 30 × 40 cm</li>
-        <li>產地：設計概念商品</li>
-      </ul>
-    </div>
-
-    <div class="tab-panel" id="notice">
-      <p>本商品為展示用設計，非實際販售商品。</p>
-      <p>圖片為 AI 生成示意，顏色可能略有差異。</p>
-    </div>
-
-  </div>
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-<footer class="footer">
-  <p>Fantasy Fan Shop 為前端設計課程期末作業展示。</p>
-</footer>
-
-<script src="js/product.js"></script>
-<script src="js/main.js"></script>
-<script>
-  loadProduct();
-</script>
-
+  <script src="js/product.js"></script>
 </body>
 </html>
