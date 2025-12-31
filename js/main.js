@@ -43,7 +43,8 @@ if (themeToggle) {
     { id: 6, name: "海报", price: 299, category: "stationery" },
     { id: 7, name: "桌垫", price: 299, category: "stationery" },
     { id: 8, name: "鼠标垫", price: 299, category: "stationery" },
-    { id: 9, name: "马克杯", price: 299, category: "stationery" }
+    { id: 9, name: "马克杯", price: 299, category: "stationery" },
+    { id: 8, name: "鼠标垫", price: 299, category: "stationery" }
   ];
 
   let cartCount = Number(localStorage.getItem("cartCount")) || 0;
