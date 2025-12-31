@@ -6,7 +6,7 @@ const products = [
     price: 299, 
     desc: "適合冒險者日常使用的帆布袋。", 
     longDesc: "本商品以冒險世界觀為設計概念，適合日常外出、課程或旅行使用。大容量設計，兼顧實用與風格。",
-    img: "images/item1.jpg" ,
+    img: ["images/item1.jpg", "images/item1-2.jpg", "images/item1-3.jpg"],
     specs: [
       "材質：帆布 / 塑料 / 金屬",
       "尺寸：約 30 × 40 cm",
@@ -122,78 +122,84 @@ const products = [
   }
 ];
 
-// ================= 載入商品 =================
+// ================= 載入商品資料 =================
 function loadProduct() {
   const params = new URLSearchParams(window.location.search);
   const id = params.get("id");
-  const p = products.find(p => p.id === id);
+  const p = products.find(item => item.id === id);
   if (!p) return;
 
-  // 填充基本資訊
-  document.getElementById("product-img").src = p.img;
-  document.getElementById("product-img").alt = p.name;
+  // 商品基本資訊
   document.getElementById("product-name").innerText = p.name;
   document.getElementById("product-price").innerText = `$${p.price}`;
   document.getElementById("product-desc").innerText = p.desc;
 
+  // 商品圖片展示
+  const imgContainer = document.getElementById("product-img-container");
+  imgContainer.innerHTML = "";
+  p.images.forEach(src => {
+    const imgEl = document.createElement("img");
+    imgEl.src = src;
+    imgEl.alt = p.name;
+    imgEl.style.maxWidth = "100%";
+    imgEl.style.marginBottom = "10px";
+    imgContainer.appendChild(imgEl);
+  });
+
   // 商品介紹 Tab
   const descPanel = document.getElementById("desc");
-  descPanel.innerHTML = ""; 
-  const imgEl = document.createElement("img");
-  imgEl.src = p.img;
-  descPanel.appendChild(imgEl);
+  descPanel.innerHTML = "";
+  p.images.forEach(src => {
+    const imgEl = document.createElement("img");
+    imgEl.src = src;
+    imgEl.style.maxWidth = "100%";
+    imgEl.style.marginBottom = "15px";
+    descPanel.appendChild(imgEl);
+  });
   const pText = document.createElement("p");
   pText.innerText = p.longDesc;
   descPanel.appendChild(pText);
 
   // 商品規格 Tab
   const specPanel = document.getElementById("spec");
-  specPanel.innerHTML = "<ul></ul>";
-  const ul = specPanel.querySelector("ul");
-  p.specs.forEach(item => {
+  specPanel.innerHTML = "";
+  const ul = document.createElement("ul");
+  p.specs.forEach(spec => {
     const li = document.createElement("li");
-    li.innerText = item;
+    li.innerText = spec;
     ul.appendChild(li);
   });
+  specPanel.appendChild(ul);
 
-  // Tab 切換
-  const buttons = document.querySelectorAll(".tab-btn");
-  const panels = document.querySelectorAll(".tab-panel");
-  buttons.forEach(btn => {
+  // 購物車功能
+  const cartBtn = document.getElementById("add-cart-btn");
+  const qtyInput = document.getElementById("product-qty");
+  cartBtn.addEventListener("click", () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || {};
+    const qty = Number(qtyInput.value) || 1;
+    cart[id] = (cart[id] || 0) + qty;
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("已加入購物車！");
+  });
+
+  // ================= Tab 切換功能 =================
+  const tabButtons = document.querySelectorAll(".tab-btn");
+  const tabPanels = document.querySelectorAll(".tab-panel");
+
+  tabButtons.forEach(btn => {
     btn.addEventListener("click", () => {
-      buttons.forEach(b => b.classList.remove("active"));
-      panels.forEach(p => p.classList.remove("active"));
+      tabButtons.forEach(b => b.classList.remove("active"));
+      tabPanels.forEach(p => p.classList.remove("active"));
+
       btn.classList.add("active");
       document.getElementById(btn.dataset.tab).classList.add("active");
     });
   });
 
-  // 購物車按鈕
-  const addBtn = document.getElementById("add-cart-btn");
-  if (addBtn) {
-    addBtn.onclick = () => {
-      let cart = JSON.parse(localStorage.getItem("cart")) || {};
-      cart[id] = (cart[id] || 0) + Number(document.getElementById("product-qty").value);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      alert("已加入購物車！");
-    };
+  // ================= 深色模式適配 =================
+  if (document.documentElement.classList.contains("dark")) {
+    document.body.classList.add("dark");
   }
 }
 
-// ================= 主程式 =================
-document.addEventListener("DOMContentLoaded", () => {
-  // 深色模式初始化
-  const theme = localStorage.getItem("theme");
-  const themeToggle = document.getElementById("themeToggle");
-  if (theme === "dark") document.documentElement.classList.add("dark");
-  if (themeToggle) {
-    themeToggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      themeToggle.textContent = document.documentElement.classList.contains("dark") ? "☀️" : "🌙";
-      localStorage.setItem("theme", document.documentElement.classList.contains("dark") ? "dark" : "light");
-    });
-  }
-
-  loadProduct();
-});
+document.addEventListener("DOMContentLoaded", loadProduct);
