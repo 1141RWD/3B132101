@@ -312,3 +312,72 @@ html.dark .pagination button {
   font-size: 1.4rem;
   font-weight: bold;
 }
+
+/* ================= 商品詳情 ================= */
+.product-detail-container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* 大圖片區 */
+.product-image-section img {
+  width: 400px;
+  border-radius: 12px;
+}
+
+/* 右側商品資訊 */
+.product-info-section {
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.detail-price {
+  font-size: 1.6rem;
+  color: #ff6600;
+  font-weight: bold;
+}
+
+.detail-desc {
+  font-size: 1rem;
+  color: #555;
+}
+
+/* 購買區 */
+.purchase-panel {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.purchase-panel input[type="number"] {
+  width: 60px;
+  padding: 6px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+#add-cart-btn {
+  padding: 8px 15px;
+  background-color: #ff6600;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  cursor: pointer;
+}
+#add-cart-btn:hover {
+  background-color: #e65c00;
+}
+
+/* RWD 手機顯示 */
+@media (max-width: 900px) {
+  .product-detail-container {
+    flex-direction: column;
+    align-items: center;
+  }
+}

@@ -163,9 +163,9 @@ sortSelect?.addEventListener("change", () => {
   updateProducts();
 
   const promotions = [
-  { img: "images/ad1.jpg", link: "example.com" },
-  { img: "images/ad2.jpg", link: "#" },
-  { img: "images/ad3.jpg", link: "#" }
+  { img: "images/ad1.jpg", link: "ad1.html" },
+  { img: "images/ad2.jpg", link: "ad2.html" },
+  { img: "images/ad3.jpg", link: "ad3.html" }
 ];
 /* ========= 推薦廣告輪播 ========= */
 function initPromotion() {

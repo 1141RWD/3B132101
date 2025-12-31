@@ -8,44 +8,60 @@
     }
   })();
 </script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>商品詳情</title>
+  <title>商品詳情｜Fantasy Fan Shop</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
+<!-- ================= HEADER ================= -->
 <header class="navbar">
   <a href="index.html" class="logo">Fantasy Fan Shop</a>
-
+  <!-- 搜索栏 -->
   <input type="text" id="searchInput" placeholder="搜尋商品">
 
+  <!-- 明暗切換 & 購物車 -->
   <div class="nav-actions">
     <button id="themeToggle">🌙</button>
-    <button id="cartBtn">
-      🛒 <span id="cart-count">0</span>
-    </button>
+    <button id="cartBtn">🛒 <span id="cart-count">0</span></button>
   </div>
 </header>
 
+<!-- ================= 商品詳情 ================= -->
+<main class="product-detail-container">
 
+  <!-- 商品主视图 -->
+  <div class="product-image-section">
+    <img id="product-img" src="" alt="商品圖">
+  </div>
 
-<main class="detail">
-  <img id="product-img">
-  <div class="detail-info">
-    <h2 id="product-name"></h2>
-    <p id="product-price"></p>
-    <p id="product-desc"></p>
-    <button onclick="addToCart()">加入購物車</button>
+  <!-- 商品資訊 -->
+  <div class="product-info-section">
+    <h1 id="product-name">商品名稱</h1>
+    <p id="product-price" class="detail-price">$0</p>
+    <p id="product-desc" class="detail-desc"></p>
+
+    <!-- 數量 & 加入購物車 -->
+    <div class="purchase-panel">
+      購買數量：
+      <input type="number" id="product-qty" value="1" min="1">
+      <button id="add-cart-btn">加入購物車</button>
+    </div>
   </div>
 </main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+  <p>Fantasy Fan Shop 為前端設計課程期末作業展示。</p>
+</footer>
 
 <script src="js/product.js"></script>
 <script src="js/main.js"></script>
 <script>
   loadProduct();
 </script>
+
 </body>
 </html>
