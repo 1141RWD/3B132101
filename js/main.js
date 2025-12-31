@@ -44,7 +44,7 @@ if (themeToggle) {
     { id: 7, name: "桌垫", price: 299, category: "stationery" },
     { id: 8, name: "鼠标垫", price: 299, category: "stationery" },
     { id: 9, name: "马克杯", price: 299, category: "stationery" },
-    { id: 8, name: "鼠标垫", price: 299, category: "stationery" }
+    { id: 10, name: "椅子", price: 299, category: "stationery" }
   ];
 
   let cartCount = Number(localStorage.getItem("cartCount")) || 0;

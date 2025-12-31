@@ -74,16 +74,29 @@ a {
   display: flex;
   padding: 20px 40px;
   gap: 30px;
+  align-items: flex-start; /* 默认 */
+  min-height: calc(100vh - 160px); /* ⭐ 关键：撑满画面 */
 }
+
 
 /* ===== FILTER AREA ===== */
 .filter-area {
   width: 220px;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  padding: 20px 20px 20px 0;
   flex-shrink: 0;
+
+  /* ⭐ 不再是卡片 */
+  background-color: transparent;
+  box-shadow: none;
+  border-radius: 0;
+
+  /* ⭐ 区隔感来自“分隔线” */
+  border-right: 1px solid rgba(0,0,0,0.1);
+
+  /* ⭐ 垂直居中 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .filter-area h4 {
@@ -207,7 +220,10 @@ html.dark .navbar {
   background-color: #1b1b1b;
 }
 
-html.dark .filter-area,
+html.dark .filter-area {
+  border-right: 1px solid rgba(255,255,255,0.15);
+}
+
 html.dark .product-card {
   background-color: #1f1f1f;
   color: #eee;
@@ -231,6 +247,39 @@ html.dark .footer {
 
 html.dark body {
   background-color: #121212;
+  color: #eee;
+}
+
+/* ================= 分页 ================= */
+.pagination {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin: 40px 0 20px;
+}
+
+.pagination button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  background-color: #eee;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.pagination button.active {
+  background-color: #ff6600;
+  color: white;
+}
+
+.pagination button:hover {
+  background-color: #ff6600;
+  color: white;
+}
+
+/* 深色模式 */
+html.dark .pagination button {
+  background-color: #2a2a2a;
   color: #eee;
 }
 
