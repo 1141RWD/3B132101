@@ -1,3 +1,6 @@
+const PRODUCTS_PER_PAGE = 9;
+let currentPage = 1;
+
 document.addEventListener("DOMContentLoaded", () => {
 
   /* ========= DOM ========= */
@@ -33,6 +36,7 @@ if (themeToggle) {
   /* ========= 如果不是商品列表页，就到此为止 ========= */
   if (!productListContainer) return;
 
+
   /* ========= 商品资料 ========= */
   const products = [
     { id: 1, name: "冒險者帆布袋", price: 299, category: "bag" },
@@ -50,52 +54,106 @@ if (themeToggle) {
   let cartCount = Number(localStorage.getItem("cartCount")) || 0;
   if (cartCountEl) cartCountEl.textContent = cartCount;
 
-  function updateProducts() {
-    const keyword = searchInput?.value.toLowerCase() || "";
-    const category = categorySelect?.value || "all";
-    const priceValue =
-      document.querySelector("input[name='price']:checked")?.value || "all";
-    const sortValue = sortSelect?.value || "default";
+function updateProducts() {
+  const keyword = searchInput?.value.toLowerCase() || "";
+  const category = categorySelect?.value || "all";
+  const priceValue =
+    document.querySelector("input[name='price']:checked")?.value || "all";
+  const sortValue = sortSelect?.value || "default";
 
-    let list = products.filter(p => {
-      const matchName = p.name.toLowerCase().includes(keyword);
-      const matchCategory = category === "all" || p.category === category;
+  /* ===== 过滤 ===== */
+  let list = products.filter(p => {
+    const matchName = p.name.toLowerCase().includes(keyword);
+    const matchCategory = category === "all" || p.category === category;
 
-      let matchPrice = true;
-      if (priceValue !== "all") {
-        const [min, max] = priceValue.split("-").map(Number);
-        matchPrice = p.price >= min && p.price <= max;
-      }
+    let matchPrice = true;
+    if (priceValue !== "all") {
+      const [min, max] = priceValue.split("-").map(Number);
+      matchPrice = p.price >= min && p.price <= max;
+    }
 
-      return matchName && matchCategory && matchPrice;
+    return matchName && matchCategory && matchPrice;
+  });
+
+  /* ===== 排序 ===== */
+  if (sortValue === "low") list.sort((a, b) => a.price - b.price);
+  if (sortValue === "high") list.sort((a, b) => b.price - a.price);
+
+  /* ===== 分页计算 ===== */
+  const totalPages = Math.ceil(list.length / PRODUCTS_PER_PAGE);
+  if (currentPage > totalPages) currentPage = 1;
+
+  const start = (currentPage - 1) * PRODUCTS_PER_PAGE;
+  const pageItems = list.slice(start, start + PRODUCTS_PER_PAGE);
+
+  /* ===== 渲染商品 ===== */
+  productListContainer.innerHTML = "";
+
+  pageItems.forEach(p => {
+    const a = document.createElement("a");
+    a.href = `product.html?id=${p.id}`;
+    a.className = "product-link";
+    a.innerHTML = `
+      <div class="product-card">
+        <img src="images/item${p.id}.jpg">
+        <h3>${p.name}</h3>
+        <p class="price">$${p.price}</p>
+      </div>
+    `;
+
+    a.querySelector(".product-card").addEventListener("dblclick", () => {
+      cartCount++;
+      cartCountEl.textContent = cartCount;
+      localStorage.setItem("cartCount", cartCount);
     });
 
-    if (sortValue === "low") list.sort((a, b) => a.price - b.price);
-    if (sortValue === "high") list.sort((a, b) => b.price - a.price);
+    productListContainer.appendChild(a);
+  });
 
-    productListContainer.innerHTML = "";
+  renderPagination(totalPages);
+}
+function renderPagination(totalPages) {
+  const pagination = document.getElementById("pagination");
+  if (!pagination) return;
 
-    list.forEach(p => {
-      const a = document.createElement("a");
-      a.href = `product.html?id=${p.id}`;
-      a.className = "product-link";
-      a.innerHTML = `
-        <div class="product-card">
-          <img src="images/item${p.id}.jpg">
-          <h3>${p.name}</h3>
-          <p class="price">$${p.price}</p>
-        </div>
-      `;
+  pagination.innerHTML = "";
 
-      a.querySelector(".product-card").addEventListener("dblclick", () => {
-        cartCount++;
-        cartCountEl.textContent = cartCount;
-        localStorage.setItem("cartCount", cartCount);
-      });
+  for (let i = 1; i <= totalPages; i++) {
+    const btn = document.createElement("button");
+    btn.textContent = i;
+    btn.className = i === currentPage ? "active" : "";
 
-      productListContainer.appendChild(a);
+    btn.addEventListener("click", () => {
+      currentPage = i;
+      updateProducts();
+      window.scrollTo({ top: 0, behavior: "smooth" });
     });
+
+    pagination.appendChild(btn);
   }
+}
+  /* ========= 事件监听 ========= */
+searchInput?.addEventListener("input", () => {
+  currentPage = 1;
+  updateProducts();
+});
+
+categorySelect?.addEventListener("change", () => {
+  currentPage = 1;
+  updateProducts();
+});
+
+priceRadios.forEach(r =>
+  r.addEventListener("change", () => {
+    currentPage = 1;
+    updateProducts();
+  })
+);
+
+sortSelect?.addEventListener("change", () => {
+  currentPage = 1;
+  updateProducts();
+});
 
   searchInput?.addEventListener("input", updateProducts);
   categorySelect?.addEventListener("change", updateProducts);
@@ -103,4 +161,32 @@ if (themeToggle) {
   sortSelect?.addEventListener("change", updateProducts);
 
   updateProducts();
+
+  const promotions = [
+  { img: "images/ad1.jpg", link: "#" },
+  { img: "images/ad2.jpg", link: "#" },
+  { img: "images/ad3.jpg", link: "#" }
+];
+
+function initPromotion() {
+  const track = document.querySelector(".promotion-track");
+  if (!track) return;
+
+  promotions.forEach(ad => {
+    const a = document.createElement("a");
+    a.href = ad.link;
+    a.className = "promotion-card";
+    a.innerHTML = `<img src="${ad.img}">`;
+    track.appendChild(a);
+  });
+
+  let index = 0;
+  setInterval(() => {
+    index = (index + 1) % promotions.length;
+    track.style.transform = `translateX(-${index * 100}%)`;
+  }, 3000);
+}
+
+initPromotion();
+
 });
