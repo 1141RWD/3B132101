@@ -163,11 +163,11 @@ sortSelect?.addEventListener("change", () => {
   updateProducts();
 
   const promotions = [
-  { img: "images/ad1.jpg", link: "#" },
+  { img: "images/ad1.jpg", link: "example.com" },
   { img: "images/ad2.jpg", link: "#" },
   { img: "images/ad3.jpg", link: "#" }
 ];
-
+/* ========= 推薦廣告輪播 ========= */
 function initPromotion() {
   const track = document.querySelector(".promotion-track");
   if (!track) return;
