@@ -13,7 +13,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>商品詳情 - Fantasy Fan Shop</title>
   <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
   <!-- ================= HEADER ================= -->
@@ -28,7 +27,7 @@
 
   <!-- ================= 商品區 ================= -->
   <section class="product-detail">
-    <div class="product-img-container">
+    <div class="product-img-container" id="product-img-container">
       <img id="product-img" src="" alt="">
     </div>
     <div class="product-info">
@@ -49,7 +48,17 @@
     <div class="tab-panel active" id="desc"></div>
     <div class="tab-panel" id="spec"></div>
   </section>
-
+  <script src="js/products.js"></script>
   <script src="js/product.js"></script>
+  <script>
+const themeToggle = document.getElementById("themeToggle");
+themeToggle.addEventListener("click", () => {
+  document.documentElement.classList.toggle("dark");
+  localStorage.setItem(
+    "theme",
+    document.documentElement.classList.contains("dark") ? "dark" : "light"
+  );
+});
+</script>
 </body>
 </html>
