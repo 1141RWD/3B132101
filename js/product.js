@@ -77,24 +77,17 @@ tabButtons.forEach(btn => {
 updateCartCount();
 }
 document.addEventListener("DOMContentLoaded", loadProduct);
-backToTopBtn.style.display = "block";
-
-// ================= 回到顶部按钮 =================
 const backToTopBtn = document.getElementById("backToTop");
 
-// 滚动时控制显示 / 隐藏
-window.addEventListener("scroll", () => {
-  if (window.scrollY > 100) {
-    backToTopBtn.style.display = "block";
-  } else {
-    backToTopBtn.style.display = "none";
-  }
-});
+document.addEventListener("DOMContentLoaded", () => {
+  const btn = document.getElementById("backToTop");
+  if (!btn) return;
 
-// 点击回到顶部
-backToTopBtn.addEventListener("click", () => {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth"
+  btn.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 });
+

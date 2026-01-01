@@ -467,31 +467,36 @@ html.dark .tab-btn { color:#eee; }
 html.dark .tab-btn.active { color:#ff6600; }
 html.dark .tab-panel { color:#eee; }
 
-/* ===== 回到顶部按钮 ===== */
+/* ================= 回到顶部按钮 ================= */
 #backToTop {
-  position: fixed;
-  right: 25px;
-  bottom: 25px;
-  width: 48px;
-  height: 48px;
+  position: fixed;          /* ⭐ 固定在视窗 */
+  bottom: 30px;             /* 距离底部 */
+  right: 30px;              /* ⭐ 右下角关键 */
+  width: 52px;
+  height: 52px;
   border-radius: 50%;
-  border: none;
+
   background-color: #ff6600;
-  color: black;
-  font-size: 20px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: bold;
+
+  border: none;
   cursor: pointer;
-  display: none !important;              /* ⭐ 默认隐藏 */
-  box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-  z-index: 999;
-  transition: opacity 0.3s, transform 0.3s;
+  z-index: 9999;            /* ⭐ 防止被盖住 */
+
+  display: block;            /* JS 控制显示 */
+  box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+  transition: transform 0.2s ease, background-color 0.2s ease;
 }
 
 #backToTop:hover {
-  transform: translateY(-4px);
+  background-color: #e65c00;
+  transform: scale(1.1);
 }
 
 /* 深色模式 */
 html.dark #backToTop {
-  background-color: #ff6600;
-  color: white;
+  background-color: #ff8800;
 }
+

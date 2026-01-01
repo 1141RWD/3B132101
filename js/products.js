@@ -7,7 +7,7 @@ const products = [
     desc: "適合冒險者日常使用的帆布袋。", 
     //longDesc: "本商品以冒險世界觀為設計概念，適合日常外出、課程或旅行使用。大容量設計，兼顧實用與風格。",
     img: "images/item1.jpg",
-    images: ["images/item1-2.jpg", "images/item1_3.jpg"],
+    images: ["images/item1_2.jpg", "images/item1_3.jpg"],
     specs: [
       "材質：帆布 / 塑料 / 金屬",
       "尺寸：約 30 × 40 cm",
