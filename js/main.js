@@ -92,6 +92,7 @@ function updateProducts() {
   pageItems.forEach(p => {
     const a = document.createElement("a");
     a.href = `product.html?id=${p.id}`;
+    a.target = "_blank";
     a.className = "product-link";
     a.innerHTML = `
       <div class="product-card">
@@ -100,12 +101,6 @@ function updateProducts() {
         <p class="price">$${p.price}</p>
       </div>
     `;
-
-    a.querySelector(".product-card").addEventListener("dblclick", () => {
-      cartCount++;
-      cartCountEl.textContent = cartCount;
-      localStorage.setItem("cartCount", cartCount);
-    });
 
     productListContainer.appendChild(a);
   });
@@ -175,6 +170,7 @@ function initPromotion() {
   promotions.forEach(ad => {
     const a = document.createElement("a");
     a.href = ad.link;
+    a.target = "_blank";
     a.className = "promotion-card";
     a.innerHTML = `<img src="${ad.img}">`;
     track.appendChild(a);
