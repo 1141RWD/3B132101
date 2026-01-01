@@ -12,14 +12,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const sortSelect = document.getElementById("sortSelect");
   const productListContainer = document.querySelector(".product-list");
   const cartBtn = document.getElementById("cartBtn");
-  
-  // 读取 localStorage 的购物车数据
-  const cart = JSON.parse(localStorage.getItem("cart")) || {};
-  const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
-
-  if (cartCountEl) {
-    cartCountEl.textContent = totalCount;
-  }
 
   // 点击购物车按钮跳转到购物车页面
   if (cartBtn) {
@@ -66,9 +58,6 @@ if (themeToggle) {
     { id: 9, name: "马克杯", price: 299, category: "stationery" },
     { id: 10, name: "椅子", price: 299, category: "stationery" }
   ];
-
-  let cartCount = Number(localStorage.getItem("cartCount")) || 0;
-  if (cartCountEl) cartCountEl.textContent = cartCount;
 
 function updateProducts() {
   const keyword = searchInput?.value.toLowerCase() || "";
@@ -216,7 +205,8 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-// 更新购物车数字
+
+// ================= 购物车数量（全站通用） =================
 function updateCartCount() {
   const cartCountEl = document.getElementById("cart-count");
   if (!cartCountEl) return;
@@ -226,10 +216,16 @@ function updateCartCount() {
 
   cartCountEl.textContent = totalCount;
 }
+
+// 页面载入时更新
+document.addEventListener("DOMContentLoaded", updateCartCount);
+
+// 监听其他页面更新购物车
 window.addEventListener("storage", (event) => {
   if (event.key === "cart") {
     updateCartCount();
   }
 });
+
 
 
