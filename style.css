@@ -500,3 +500,11 @@ html.dark #backToTop {
   background-color: #ff8800;
 }
 
+/* ================= 購物車按鈕 ================= */
+#cartBtn {
+  display: inline-flex; /* 或者 flex */
+  align-items: center;
+  gap: 5px; /* 图标和数字间距 */
+  cursor: pointer;
+  font-size: 1.2rem; /* 调整大小 */
+}

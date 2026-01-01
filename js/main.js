@@ -11,6 +11,22 @@ document.addEventListener("DOMContentLoaded", () => {
   const priceRadios = document.querySelectorAll("input[name='price']");
   const sortSelect = document.getElementById("sortSelect");
   const productListContainer = document.querySelector(".product-list");
+  const cartBtn = document.getElementById("cartBtn");
+  
+  // 读取 localStorage 的购物车数据
+  const cart = JSON.parse(localStorage.getItem("cart")) || {};
+  const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+
+  if (cartCountEl) {
+    cartCountEl.textContent = totalCount;
+  }
+
+  // 点击购物车按钮跳转到购物车页面
+  if (cartBtn) {
+    cartBtn.addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  }
 
   /* ========= 主题（全页面通用） ========= */
 if (document.documentElement.classList.contains("dark")) {
@@ -200,3 +216,20 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+// 更新购物车数字
+function updateCartCount() {
+  const cartCountEl = document.getElementById("cart-count");
+  if (!cartCountEl) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || {};
+  const totalCount = Object.values(cart).reduce((sum, qty) => sum + qty, 0);
+
+  cartCountEl.textContent = totalCount;
+}
+window.addEventListener("storage", (event) => {
+  if (event.key === "cart") {
+    updateCartCount();
+  }
+});
+
+
