@@ -77,6 +77,8 @@ tabButtons.forEach(btn => {
 updateCartCount();
 }
 document.addEventListener("DOMContentLoaded", loadProduct);
+
+// ================= 回到最上方按鈕 =================
 const backToTopBtn = document.getElementById("backToTop");
 
 document.addEventListener("DOMContentLoaded", () => {
