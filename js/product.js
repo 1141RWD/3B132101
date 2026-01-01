@@ -15,22 +15,21 @@ function loadProduct() {
   document.getElementById("product-img").src = p.img;
   document.getElementById("product-img").alt = p.name;
 
-  // 商品介紹 Tab
-  const descPanel = document.getElementById("desc");
-  descPanel.innerHTML = ""; // 清空之前内容
-  const descText = document.createElement("p");
-  descText.innerText = p.longDesc;
-  descPanel.appendChild(descText);
+const descPanel = document.getElementById("desc");
+descPanel.innerHTML = "";
 
-  // 如果有附加圖片也可以渲染
-  if (p.images && p.images.length) {
-    p.images.forEach(src => {
-      const imgEl = document.createElement("img");
-      imgEl.src = src;
-      imgEl.alt = p.name;
-      descPanel.appendChild(imgEl);
-    });
-  }
+// 只放圖片
+if (p.images && p.images.length) {
+  p.images.forEach(src => {
+    const img = document.createElement("img");
+    img.src = src;
+    img.alt = p.name;
+    img.style.width = "100%";
+    img.style.marginBottom = "16px";
+    descPanel.appendChild(img);
+  });
+}
+
 
   // 商品規格 Tab
   const specPanel = document.getElementById("spec");
@@ -76,7 +75,26 @@ tabButtons.forEach(btn => {
 
 // 页面加载时更新
 updateCartCount();
-
 }
-
 document.addEventListener("DOMContentLoaded", loadProduct);
+backToTopBtn.style.display = "block";
+
+// ================= 回到顶部按钮 =================
+const backToTopBtn = document.getElementById("backToTop");
+
+// 滚动时控制显示 / 隐藏
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 100) {
+    backToTopBtn.style.display = "block";
+  } else {
+    backToTopBtn.style.display = "none";
+  }
+});
+
+// 点击回到顶部
+backToTopBtn.addEventListener("click", () => {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth"
+  });
+});
