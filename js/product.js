@@ -1,3 +1,9 @@
+// 点击购物车按钮跳转到购物车页面
+  if (cartBtn) {
+    cartBtn.addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  }
 // ================= 載入商品資料 =================
 function loadProduct() {
   const params = new URLSearchParams(window.location.search);

@@ -543,6 +543,7 @@ html.dark #backToTop {
 /* ===== 商品欄位（圖片 + 名稱）===== */
 .cart-product {
   display: flex;
+  justify-content: center;
   align-items: center;
   gap: 12px;
   text-align: left;
@@ -580,6 +581,11 @@ html.dark #backToTop {
 .cart-table button:hover {
   opacity: 0.85;
 }
+
+.cart-table td {
+  vertical-align: middle;
+}
+
 
 /* ================= Footer（總計 + 結帳） ================= */
 
