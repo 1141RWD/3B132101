@@ -648,3 +648,107 @@ html.dark .cart-footer {
 html.dark .checkout-btn {
   background: #ff8800;
 }
+
+/* ================= RWD ================= */
+/* ===== 移动设备小于768px ===== */
+@media (max-width: 768px) {
+
+  /* main container 缩小边距 */
+  .cart-container {
+    padding: 0 10px;
+    margin: 20px auto 120px; /* 底部留空间给 footer */
+  }
+
+  /* 表格整体改成块状显示，适合手机 */
+  .cart-table,
+  .cart-table thead,
+  .cart-table tbody,
+  .cart-table th,
+  .cart-table td,
+  .cart-table tr {
+    display: block;
+  }
+
+  .cart-table thead {
+    display: none; /* 隐藏表头 */
+  }
+
+  .cart-table tr {
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+  }
+
+  .cart-table td {
+    text-align: left;
+    padding: 6px 0;
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  /* 每个td用before加上标题 */
+  .cart-table td:nth-child(1)::before { content: "選擇"; }
+  .cart-table td:nth-child(2)::before { content: "圖片"; }
+  .cart-table td:nth-child(3)::before { content: "商品名稱"; }
+  .cart-table td:nth-child(4)::before { content: "單價"; }
+  .cart-table td:nth-child(5)::before { content: "數量"; }
+  .cart-table td:nth-child(6)::before { content: "小計"; }
+  .cart-table td:nth-child(7)::before { content: "操作"; }
+
+  .cart-table td::before {
+    font-weight: bold;
+    margin-right: 10px;
+  }
+
+  .cart-img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-qty {
+    width: 50px;
+  }
+
+  /* footer 按钮全宽 */
+  .cart-footer-inner {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .checkout-btn {
+    width: 100%;
+  }
+}
+/* 手机缩小 navbar */
+@media (max-width: 768px) {
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .nav-actions {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .nav-actions button {
+    margin-left: 10px;
+  }
+}
+/* 图片固定尺寸，不挤压其他栏位 */
+.cart-img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* 勾选框放大，方便触控 */
+.cart-checkbox {
+  transform: scale(1.2);
+}
