@@ -508,3 +508,137 @@ html.dark #backToTop {
   cursor: pointer;
   font-size: 1.2rem; /* 调整大小 */
 }
+
+/* ================= 購物車頁面 ================= */
+
+.cart-container {
+  max-width: 1200px;
+  margin: 40px auto 140px; /* 底部留空间给 footer */
+  padding: 0 20px;
+}
+
+.cart-container h2 {
+  margin-bottom: 20px;
+}
+
+/* ===== 表格 ===== */
+.cart-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.cart-table th,
+.cart-table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+  vertical-align: middle;
+}
+
+.cart-table th {
+  background: #f5f5f5;
+  font-weight: bold;
+}
+
+/* ===== 商品欄位（圖片 + 名稱）===== */
+.cart-product {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+}
+
+.cart-product img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ===== 勾選框 ===== */
+.cart-checkbox {
+  transform: scale(1.2);
+}
+
+/* ===== 數量 input ===== */
+.cart-table input[type="number"] {
+  width: 60px;
+  padding: 6px;
+  text-align: center;
+}
+
+/* ===== 刪除按鈕 ===== */
+.cart-table button {
+  padding: 6px 10px;
+  border: none;
+  background: #ff4d4f;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.cart-table button:hover {
+  opacity: 0.85;
+}
+
+/* ================= Footer（總計 + 結帳） ================= */
+
+.cart-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border-top: 1px solid #ddd;
+  box-shadow: 0 -4px 12px rgba(0,0,0,0.08);
+  z-index: 1000;
+}
+
+.cart-footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.cart-total {
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.checkout-btn {
+  padding: 12px 28px;
+  font-size: 1.1rem;
+  background: #ff6600;
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  cursor: pointer;
+}
+
+.checkout-btn:hover {
+  opacity: 0.9;
+}
+
+/* ================= 深色模式 ================= */
+
+html.dark .cart-table th {
+  background: #222;
+}
+
+html.dark .cart-table th,
+html.dark .cart-table td {
+  border-color: #444;
+  color: #eee;
+}
+
+html.dark .cart-footer {
+  background: #111;
+  border-color: #333;
+}
+
+html.dark .checkout-btn {
+  background: #ff8800;
+}

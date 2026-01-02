@@ -1,109 +1,72 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
-    <script>
-  (function () {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    }
-  })();
-</script>
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>購物車 - Fantasy Fan Shop</title>
   <link rel="stylesheet" href="style.css">
+
+  <script>
+    (function () {
+      const theme = localStorage.getItem("theme");
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
 </head>
+
 <body>
 
 <header class="navbar">
   <a href="index.html" class="logo">Fantasy Fan Shop</a>
-
-  <input type="text" id="searchInput" placeholder="搜尋商品">
-
   <div class="nav-actions">
     <button id="themeToggle">🌙</button>
-    <button id="cartBtn">
-      🛒 <span id="cart-count">0</span>
-    </button>
+    <button id="cartBtn">🛒 <span id="cart-count">0</span></button>
   </div>
 </header>
 
-
 <main class="cart-container">
   <h2>我的購物車</h2>
+
   <table class="cart-table">
     <thead>
       <tr>
-        <th>商品</th>
-        <th>價格</th>
+        <th>選擇</th>
+        <th>圖片</th>
+        <th>商品名稱</th>
+        <th>單價</th>
         <th>數量</th>
         <th>小計</th>
         <th>操作</th>
       </tr>
     </thead>
+
     <tbody id="cart-items">
       <!-- JS 動態生成 -->
     </tbody>
   </table>
-
-  <div class="cart-summary">
-    <p>總計：$<span id="cart-total">0</span></p>
-    <button onclick="checkout()">結帳</button>
-  </div>
 </main>
 
-<script src="product.js"></script>
-<script>
-  const cartItemsEl = document.getElementById("cart-items");
-  const cartTotalEl = document.getElementById("cart-total");
-  let cart = JSON.parse(localStorage.getItem("cart")) || {};
+<!-- 回到最上方 -->
+<button id="backToTop" title="回到最上方">↑</button>
 
-  function renderCart() {
-    cartItemsEl.innerHTML = "";
-    let total = 0;
-    for (let id in cart) {
-      const product = products[id - 1]; // products 陣列 index = id-1
-      const qty = cart[id];
-      const subtotal = product.price * qty;
-      total += subtotal;
+<!-- ✅ Footer：总价 & 结账 -->
+<footer class="cart-footer">
+  <div class="cart-footer-inner">
+    <div class="cart-total">
+      總計：$<span id="cart-total">0</span>
+    </div>
 
-      const tr = document.createElement("tr");
-      tr.innerHTML = `
-        <td><a href="product.html?id=${id}">${product.name}</a></td>
-        <td>$${product.price}</td>
-        <td>
-          <input type="number" min="1" value="${qty}" onchange="updateQuantity(${id}, this.value)">
-        </td>
-        <td>$${subtotal}</td>
-        <td><button onclick="removeItem(${id})">刪除</button></td>
-      `;
-      cartItemsEl.appendChild(tr);
-    }
-    cartTotalEl.textContent = total;
-  }
+    <button class="checkout-btn" onclick="checkout()">
+      結帳
+    </button>
+  </div>
+</footer>
 
-  function updateQuantity(id, value) {
-    const qty = parseInt(value);
-    if (qty <= 0) return;
-    cart[id] = qty;
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
-  }
-
-  function removeItem(id) {
-    delete cart[id];
-    localStorage.setItem("cart", JSON.stringify(cart));
-    renderCart();
-  }
-
-  function checkout() {
-    alert("結帳功能示意，實際未實作。");
-  }
-
-  renderCart();
-</script>
+<!-- JS 一律放在 body 最底 -->
+<script src="products.js"></script>
 <script src="js/main.js"></script>
+
 </body>
 </html>
