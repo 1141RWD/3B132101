@@ -112,22 +112,31 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // ===== 主题切换 =====
-  if (themeToggle) {
-    if (document.documentElement.classList.contains("dark")) {
-      themeToggle.textContent = "☀️";
-    } else {
-      themeToggle.textContent = "🌙";
-    }
+  /* ===== 主题切换 ===== */
+document.addEventListener("DOMContentLoaded", () => {
+  const themeToggle = document.getElementById("themeToggle");
+  if (!themeToggle) return;
 
-    themeToggle.addEventListener("click", () => {
-      document.documentElement.classList.toggle("dark");
-      document.body.classList.toggle("dark");
-      const isDark = document.documentElement.classList.contains("dark");
-      themeToggle.textContent = isDark ? "☀️" : "🌙";
-      localStorage.setItem("theme", isDark ? "dark" : "light");
-    });
+  // 初始化主题
+  const theme = localStorage.getItem("theme");
+  if (theme === "dark") {
+    document.documentElement.classList.add("dark");
+    document.body.classList.add("dark");
+    themeToggle.textContent = "☀️";
+  } else {
+    themeToggle.textContent = "🌙";
   }
+
+  // 点击切换
+  themeToggle.addEventListener("click", () => {
+    document.documentElement.classList.toggle("dark");
+    document.body.classList.toggle("dark");
+    const isDark = document.documentElement.classList.contains("dark");
+    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    localStorage.setItem("theme", isDark ? "dark" : "light");
+  });
+});
+
 
   // 初次渲染
   renderCart();
