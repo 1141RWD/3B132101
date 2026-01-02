@@ -1,95 +1,93 @@
-/* ================= 購物車頁面 cart.js ================= */
+// =================== 结账函数 ===================
+function checkout() {
+  const cartItemsEl = document.getElementById("cart-items");
+  const cartTotalEl = document.getElementById("cart-total");
 
+  let cart = JSON.parse(localStorage.getItem("cart")) || {};
+  const checkboxes = cartItemsEl.querySelectorAll(".cart-checkbox");
+
+  let total = 0;
+  let hasChecked = false;
+
+  checkboxes.forEach(cb => {
+    const id = cb.dataset.id;
+    if (cb.checked) {
+      const tr = cb.closest("tr");
+      const subtotalEl = tr.querySelector("td:nth-child(6)");
+      const subtotal = subtotalEl ? parseInt(subtotalEl.textContent.replace("$", "")) : 0;
+      total += subtotal;
+      hasChecked = true;
+
+      // 移除购物车数据
+      delete cart[id];
+    }
+  });
+
+  if (!hasChecked) {
+    alert("請先勾選商品再結帳！");
+    return;
+  }
+
+  localStorage.setItem("cart", JSON.stringify(cart));
+  alert(`結帳金額：$${total}\n感謝您的購買！`);
+
+  // 重新渲染购物车
+  if (typeof renderCart === "function") renderCart();
+}
 document.addEventListener("DOMContentLoaded", () => {
   const cartItemsEl = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
-  const backToTopBtn = document.getElementById("backToTop");
   const themeToggle = document.getElementById("themeToggle");
 
-  if (!cartItemsEl || !cartTotalEl) return;
-
-  // 读取购物车
   let cart = JSON.parse(localStorage.getItem("cart")) || {};
-  let selectedItems = {}; // 记录勾选状态
+  let selectedItems = {}; // 保存勾选状态
 
-  // ===== 渲染购物车 =====
   function renderCart() {
     cartItemsEl.innerHTML = "";
-
     let total = 0;
 
     Object.keys(cart).forEach(id => {
       const product = products.find(p => p.id == id);
       if (!product) return;
-
       const qty = cart[id];
       const subtotal = product.price * qty;
 
       const tr = document.createElement("tr");
       tr.innerHTML = `
-        <td>
-          <input type="checkbox" class="cart-checkbox" data-id="${id}" ${selectedItems[id] ? "checked" : ""}>
-        </td>
-
-        <td>
-          <div class="cart-product">
+        <td><input type="checkbox" class="cart-checkbox" data-id="${id}" ${selectedItems[id] ? "checked" : ""}></td>
+        <td><div class="cart-product">
             <img src="${product.img}" alt="${product.name}" class="cart-img">
-          </div>
-        </td>
-
+          </div></td>
         <td>${product.name}</td>
-
         <td>$${product.price}</td>
-
-        <td>
-          <input type="number"
-                 min="1"
-                 value="${qty}"
-                 class="cart-qty"
-                 data-id="${id}">
-        </td>
-
+        <td><input type="number" class="cart-qty" min="1" value="${qty}" data-id="${id}"></td>
         <td>$${subtotal}</td>
-
-        <td>
-          <button class="remove-btn" data-id="${id}">刪除</button>
-        </td>
+        <td><button class="remove-btn" data-id="${id}">刪除</button></td>
       `;
 
       cartItemsEl.appendChild(tr);
 
-      // 计算总价，只加已勾选的商品
-      if (selectedItems[id]) {
-        total += subtotal;
-      }
+      // 总价只加已勾选
+      if (selectedItems[id]) total += subtotal;
     });
 
     cartTotalEl.textContent = total;
-
-    // 同步右上角数字
-    if (typeof updateCartCount === "function") {
-      updateCartCount();
-    }
+    if (typeof updateCartCount === "function") updateCartCount();
   }
 
-  // ===== 事件委托：数量变化 / 勾选变化 / 删除 =====
+  // 事件委托：数量和勾选变化
   cartItemsEl.addEventListener("change", e => {
     const target = e.target;
-
-    // 数量变化
     if (target.classList.contains("cart-qty")) {
       const id = target.dataset.id;
-      const qty = parseInt(target.value, 10);
+      const qty = parseInt(target.value);
       if (qty < 1) return;
       cart[id] = qty;
       localStorage.setItem("cart", JSON.stringify(cart));
       renderCart();
     }
-
-    // 勾选变化
     if (target.classList.contains("cart-checkbox")) {
-      const id = target.dataset.id;
-      selectedItems[id] = target.checked;
+      selectedItems[target.dataset.id] = target.checked;
       renderCart();
     }
   });
@@ -97,22 +95,14 @@ document.addEventListener("DOMContentLoaded", () => {
   // 删除商品
   cartItemsEl.addEventListener("click", e => {
     if (!e.target.classList.contains("remove-btn")) return;
-
     const id = e.target.dataset.id;
     delete cart[id];
-    delete selectedItems[id]; // 同时删除勾选状态
+    delete selectedItems[id];
     localStorage.setItem("cart", JSON.stringify(cart));
     renderCart();
   });
 
-  // ===== 回到顶部按钮 =====
-  if (backToTopBtn) {
-    backToTopBtn.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  }
-
-  /* ===== 主题切换 ===== */
+   /* ===== 主题切换 ===== */
 document.addEventListener("DOMContentLoaded", () => {
   const themeToggle = document.getElementById("themeToggle");
   if (!themeToggle) return;
@@ -137,7 +127,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-
-  // 初次渲染
   renderCart();
 });
