@@ -33,7 +33,11 @@ function checkout() {
 
   // 重新渲染购物车
   if (typeof renderCart === "function") renderCart();
+
+  // 弹窗关闭后刷新页面
+  location.reload();
 }
+
 document.addEventListener("DOMContentLoaded", () => {
   const cartItemsEl = document.getElementById("cart-items");
   const cartTotalEl = document.getElementById("cart-total");
