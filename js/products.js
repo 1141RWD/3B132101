@@ -2,7 +2,7 @@
   const products = [
   {
     id: "1",
-    name: "折纸小鸟玩偶",
+    name: "折紙小鸟玩偶",
     price: 599,
     desc: "以人氣角色為原型設計的精緻玩偶。",
     img: "images/item1.jpg",
@@ -15,7 +15,7 @@
   },
   {
     id: "2",
-    name: "双子主题鼠標墊",
+    name: "双子主題鼠標墊",
     price: 499,
     desc: "滑順耐用的角色主題鼠標墊。",
     img: "images/item2.jpg",
@@ -41,9 +41,9 @@
   },
   {
     id: "4",
-    name: "兰那罗吊饰",
+    name: "蘭那羅吊飾",
     price: 100,
-    desc: "可爱的角色造型，可挂在包包上。",
+    desc: "可愛的角色造型，可挂在包包上。",
     img: "images/item4.jpg",
     images: ["images/item4_2.jpg", "images/item4_3.jpg"],
     specs: [
@@ -106,7 +106,7 @@
   },
   {
     id: "9",
-    name: "艾莲收藏專輯",
+    name: "艾蓮收藏專輯",
     price: 1299,
     desc: "專為收藏卡與周邊設計的收藏專輯。",
     img: "images/item9.jpg",
