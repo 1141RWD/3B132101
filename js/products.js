@@ -6,7 +6,7 @@
     price: 599,
     desc: "以人氣角色為原型設計的精緻玩偶。",
     img: "images/item1.jpg",
-    images: ["images/item1_2.jpg", "images/item1_3.jpg"],
+    images: ["images/item1_3.jpg"],
     specs: [
       "材質：絨毛 / 棉花",
       "尺寸：約 25 cm",
