@@ -49,8 +49,8 @@ if (themeToggle) {
   const products = [
     { id: 1, name: "玩偶", price: 599, category: "honkai" },
     { id: 2, name: "鼠標墊", price: 499, category: "genshin" },
-    { id: 3, name: "鑰匙圈", price: 399, category: "genshin" },
-    { id: 4, name: "徽章", price: 100, category: "genshin" },
+    { id: 3, name: "徽章", price: 399, category: "genshin" },
+    { id: 4, name: "鑰匙圈", price: 100, category: "genshin" },
     { id: 5, name: "立牌", price: 399, category: "honkai" },
     { id: 6, name: "海报", price: 499, category: "honkai" },
     { id: 7, name: "吊飾", price: 299, category: "honkai" },

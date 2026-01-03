@@ -28,11 +28,11 @@
   },
   {
     id: "3",
-    name: "鑰匙圈",
+    name: "马口铁徽章",
     price: 399,
-    desc: "輕巧可愛的角色造型鑰匙圈。",
+    desc: "輕巧可愛的角色造型馬口鐵徽章。",
     img: "images/item3.jpg",
-    images: ["images/item3_2.jpg", "images/item3_3.jpg"],
+    images: ["images/item3_2.jpg", "images/item3_3.jpg", "images/item3_4.jpg"],
     specs: [
       "材質：壓克力 / 金屬",
       "尺寸：約 6 cm",
@@ -71,7 +71,7 @@
     price: 499,
     desc: "高解析印刷角色主視覺海報。",
     img: "images/item6.jpg",
-    images: ["images/item6_2.jpg", "images/item6_3.jpg"],
+    images: ["images/item6_2.jpg"],
     specs: [
       "材質：銅版紙",
       "尺寸：約 A2",
@@ -80,11 +80,11 @@
   },
   {
     id: "7",
-    name: "吊飾",
+    name: "灯具",
     price: 299,
     desc: "可掛於包包或手機的角色吊飾。",
     img: "images/item7.jpg",
-    images: ["images/item7_2.jpg", "images/item7_3.jpg"],
+    images: ["images/item7_2.jpg", "images/item7_4.jpg", "images/item7_3.jpg"],
     specs: [
       "材質：壓克力 / 金屬",
       "尺寸：約 7 cm",
@@ -97,7 +97,7 @@
     price: 3999,
     desc: "高品質塗裝的角色收藏級手辦。",
     img: "images/item8.jpg",
-    images: ["images/item8_2.jpg", "images/item8_3.jpg"],
+    images: ["images/item8_2.jpg"],
     specs: [
       "材質：PVC / ABS",
       "尺寸：約 20 cm",
