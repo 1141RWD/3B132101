@@ -1,5 +1,5 @@
 // ================= 商品資料 =================
-  const productDetails = [
+  const products = [
   {
     id: "1",
     name: "玩偶",
