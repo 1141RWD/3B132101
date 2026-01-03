@@ -47,16 +47,16 @@ if (themeToggle) {
 
   /* ========= 商品资料 ========= */
   const products = [
-    { id: 1, name: "冒險者帆布袋", price: 299, category: "bag" },
-    { id: 2, name: "盲盒", price: 99, category: "accessory" },
-    { id: 3, name: "吧唧", price: 199, category: "accessory" },
-    { id: 4, name: "玩偶", price: 599, category: "accessory" },
-    { id: 5, name: "立牌", price: 299, category: "accessory" },
-    { id: 6, name: "海报", price: 299, category: "stationery" },
-    { id: 7, name: "桌垫", price: 299, category: "stationery" },
-    { id: 8, name: "鼠标垫", price: 299, category: "stationery" },
-    { id: 9, name: "马克杯", price: 299, category: "stationery" },
-    { id: 10, name: "椅子", price: 299, category: "stationery" }
+    { id: 1, name: "玩偶", price: 599, category: "honkai" },
+    { id: 2, name: "鼠標墊", price: 499, category: "genshin" },
+    { id: 3, name: "鑰匙圈", price: 399, category: "genshin" },
+    { id: 4, name: "徽章", price: 100, category: "genshin" },
+    { id: 5, name: "立牌", price: 399, category: "honkai" },
+    { id: 6, name: "海报", price: 499, category: "honkai" },
+    { id: 7, name: "吊飾", price: 299, category: "honkai" },
+    { id: 8, name: "手辦", price: 3999, category: "ZZZ" },
+    { id: 9, name: "收藏專輯", price: 1299, category: "ZZZ" },
+    { id: 10, name: "盲盒", price: 299, category: "ZZZ" }
   ];
 
 function updateProducts() {
