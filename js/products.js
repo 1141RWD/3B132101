@@ -15,7 +15,7 @@
   },
   {
     id: "2",
-    name: "双子主題鼠標墊",
+    name: "雙子主題鼠標墊",
     price: 499,
     desc: "滑順耐用的角色主題鼠標墊。",
     img: "images/item2.jpg",
@@ -54,7 +54,7 @@
   },
   {
     id: "5",
-    name: "开拓者立牌",
+    name: "開拓者立牌",
     price: 399,
     desc: "高透明度角色壓克力立牌,帶有彈簧底座。",
     img: "images/item5.jpg",
@@ -67,7 +67,7 @@
   },
   {
     id: "6",
-    name: "庆典祝礼系列挂画",
+    name: "慶典祝禮系列掛畫",
     price: 499,
     desc: "高解析印刷角色主視覺海報。",
     img: "images/item6.jpg",
@@ -80,7 +80,7 @@
   },
   {
     id: "7",
-    name: "「崩坏：星穹铁道」嗚嗚一下系列嗚嗚伯拍拍灯",
+    name: "嗚嗚一下系列嗚嗚伯拍拍灯",
     price: 299,
     desc: "可愛造型的角色主題拍拍燈。",
     img: "images/item7.jpg",
@@ -93,7 +93,7 @@
   },
   {
     id: "8",
-    name: "ZZZ比利可动手辦",
+    name: "ZZZ比利可動手辦",
     price: 3999,
     desc: "高品質塗裝的角色收藏級手辦。",
     img: "images/item8.jpg",

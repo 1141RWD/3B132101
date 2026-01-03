@@ -51,10 +51,10 @@ if (themeToggle) {
     { id: 2, name: "双子鼠標墊", price: 499, category: "genshin" },
     { id: 3, name: "蒙德角色徽章", price: 399, category: "genshin" },
     { id: 4, name: "蘭那羅吊飾", price: 100, category: "genshin" },
-    { id: 5, name: "开拓者立牌", price: 399, category: "honkai" },
-    { id: 6, name: "「崩坏：星穹铁道」庆典祝礼系列挂画", price: 499, category: "honkai" },
-    { id: 7, name: "嗚嗚伯造型燈具", price: 299, category: "honkai" },
-    { id: 8, name: "ZZZ比利可动手辦", price: 3999, category: "ZZZ" },
+    { id: 5, name: "開拓者立牌", price: 399, category: "honkai" },
+    { id: 6, name: "「崩壞：星穹鐵道」慶典祝禮系列掛畫", price: 499, category: "honkai" },
+    { id: 7, name: "「崩壞：星穹鐵道」嗚嗚伯造型燈具", price: 299, category: "honkai" },
+    { id: 8, name: "ZZZ比利可動手辦", price: 3999, category: "ZZZ" },
     { id: 9, name: "艾蓮收藏專輯", price: 1299, category: "ZZZ" },
     { id: 10, name: "邦布盲盒", price: 299, category: "ZZZ" }
   ];
